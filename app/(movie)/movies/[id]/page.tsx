@@ -1,15 +1,22 @@
 import { Suspense } from "react";
-import MovieInfo from "../../../../components/movie-info";
+import MovieInfo, { getMovie } from "../../../../components/movie-info";
 import MovieVideos from "../../../../components/movie-videos";
 
-export default function MvoieDetail({
-  params: { id },
-}: {
+interface IParams {
   params: { id: string };
-}) {
+}
+
+export async function generateMetadata({ params: { id } }: IParams) {
+  const movie = await getMovie(id);
+  return {
+    title: movie.title,
+  };
+}
+
+export default function MvoieDetailPage({ params: { id } }: IParams) {
   return (
     <div>
-      <h3>Movie detail page</h3>
+      {/* 위에서 fetch했기 때문에 여기에서 개시된 응답을 받는다. (중복 fetch 안함.) */}
       <Suspense fallback={<h1>Loading movie info</h1>}>
         <MovieInfo id={id} />
       </Suspense>
