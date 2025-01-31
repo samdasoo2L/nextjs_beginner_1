@@ -1,2 +1,9 @@
-# nextjs_beginner_1
- nextJs_1
+## Movie Info Web
+
+next.js
+
+vercel
+
+## Domain
+
+https://nextjs-beginner-movies.vercel.app/
